@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ SmartBill Monitor | Analytics & Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ==========================================
+             NAVIGATION HEADER
+             ========================================== -->
+        <header>
+            <div class="nav-container">
+                <div class="brand-section">
+                    <span class="logo-icon">⚡</span>
+                    <h1>SmartBill Monitor</h1>
+                </div>
+                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Live Dashboard</a></li>
+                        <li class="active"><a href="dashboard.html">Analytics & Settings</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="status-section">
+                    <div id="connection-status" class="status-badge status-offline">Connecting...</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==========================================
+             MAIN ANALYTICS CONTENT
+             ========================================== -->
+        <main class="dashboard-grid">
+            
+            <div class="section-title">Telemetry Summary & Health</div>
+
+            <!-- Mini Summary (Voltage, Current, Power) -->
+            <div class="card card-colspan-3">
+                <div class="card-header">
+                    <span class="card-title">Live Sensor Summary</span>
+                    <span style="font-size: 0.8rem; color: var(--clr-power);">● Streaming</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Voltage</p>
+                        <p style="font-size: 1.4rem; font-weight: 700; color: var(--clr-voltage);"><span id="voltage-val" class="skeleton">--</span> <span style="font-size: 0.9rem; font-weight: 500;">V</span></p>
+                    </div>
+                    <div style="border-left: 1px solid var(--border-glass); padding-left: 16px;">
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Current</p>
+                        <p style="font-size: 1.4rem; font-weight: 700; color: var(--clr-current);"><span id="current-val" class="skeleton">--</span> <span style="font-size: 0.9rem; font-weight: 500;">A</span></p>
+                    </div>
+                    <div style="border-left: 1px solid var(--border-glass); padding-left: 16px;">
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Power</p>
+                        <p style="font-size: 1.4rem; font-weight: 700; color: var(--clr-power);"><span id="power-val" class="skeleton">--</span> <span style="font-size: 0.9rem; font-weight: 500;">W</span></p>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Total Consumed</p>
+                        <p style="font-size: 1.6rem; font-weight: 700; color: var(--clr-units);"><span id="energy-val" class="skeleton">--</span> <span style="font-size: 0.9rem; font-weight: 500;">kWh</span></p>
+                    </div>
+                    <div style="text-align: center; border-left: 1px solid var(--border-glass); padding-left: 16px;">
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Monthly Est.</p>
+                        <p style="font-size: 1.6rem; font-weight: 700; color: var(--text-primary);">Rs. <span id="monthly-bill-val" class="skeleton">--</span></p>
+                    </div>
+                    <div style="text-align: right; border-left: 1px solid var(--border-glass); padding-left: 16px;">
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Total Bill</p>
+                        <p style="font-size: 1.6rem; font-weight: 700; color: var(--clr-bill);">Rs. <span id="bill-val" class="skeleton">--</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hardware Node Health -->
+            <div class="card card-colspan-3">
+                <div class="card-header">
+                    <span class="card-title">NodeMCU Node Details</span>
+                    <span class="chart-badge">Hardware</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-secondary);">Device ID:</span>
+                        <span style="font-weight: 600; color: var(--text-primary);">ESP8266_SMART_01</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-secondary);">Firmware Version:</span>
+                        <span style="font-weight: 600; color: var(--text-primary);">v1.0.0-phase4</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-secondary);">WiFi Status:</span>
+                        <span style="font-weight: 600; color: var(--clr-online);">Connected (MakerSpace)</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-secondary);">ThingSpeak Update:</span>
+                        <span style="font-weight: 600; color: var(--text-primary);">Every 20 Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration & Calculator Settings -->
+            <div class="section-title">Billing & API Configurations</div>
+
+            <!-- Tariff Rate Setup -->
+            <div class="card card-colspan-3">
+                <div class="card-header">
+                    <span class="card-title">Tariff Rate Setup</span>
+                    <span class="chart-badge">Rates</span>
+                </div>
+                <div class="settings-group">
+                    <label class="settings-label" for="tariff-input">Electricity Tariff Rate</label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rs.</span>
+                        <input id="tariff-input" class="settings-input" type="number" step="0.1" value="8.0" />
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;">Flat rate value (Rs/kWh) used for custom estimations.</p>
+                </div>
+                <button id="save-tariff-btn" class="settings-btn">Save Tariff Settings</button>
+            </div>
+
+            <!-- ThingSpeak Credentials -->
+            <div class="card card-colspan-3">
+                <div class="card-header">
+                    <span class="card-title">ThingSpeak Credentials</span>
+                    <span class="chart-badge">API Keys</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div class="settings-group" style="margin-bottom: 0;">
+                        <label class="settings-label" for="channel-id-input">Channel ID</label>
+                        <input id="channel-id-input" class="settings-input" type="text" style="padding-left: 12px;" placeholder="e.g. 3391644" />
+                    </div>
+                    <div class="settings-group" style="margin-bottom: 0;">
+                        <label class="settings-label" for="read-key-input">Read API Key</label>
+                        <input id="read-key-input" class="settings-input" type="text" style="padding-left: 12px;" placeholder="e.g. 04IU1CDM176ZZ0CT" />
+                    </div>
+                </div>
+                <button id="save-api-btn" class="settings-btn" style="margin-top: 16px;">Save API Configuration</button>
+            </div>
+
+            <!-- System Activity Log (full width on desktop) -->
+            <div class="card card-colspan-6">
+                <div class="card-header">
+                    <span class="card-title">System Activity Log</span>
+                    <span class="chart-badge">Events</span>
+                </div>
+                <div class="log-list">
+                    <div class="log-item">
+                        <span class="log-time">15:48:32</span>
+                        <span class="log-msg">WiFi Linked to 'MakerSpace'</span>
+                        <span class="log-status online">Success</span>
+                    </div>
+                    <div class="log-item">
+                        <span class="log-time">15:48:35</span>
+                        <span class="log-msg">ThingSpeak channel streaming active</span>
+                        <span class="log-status online">Active</span>
+                    </div>
+                    <div class="log-item">
+                        <span class="log-time">15:48:42</span>
+                        <span class="log-msg">First telemetered feed entry synced</span>
+                        <span class="log-status">Event</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historical Analytics & Telemetry Charts -->
+            <div class="section-title">Telemetry Visualizations</div>
+
+            <!-- Power Usage Chart -->
+            <div class="card card-colspan-3">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title" style="color: var(--text-primary);">Power Usage Trend</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Real-time load profile (Watts)</p>
+                    </div>
+                    <span class="chart-badge">Line Chart</span>
+                </div>
+                <div style="position: relative; height: 220px; width: 100%; margin-top: 15px;">
+                    <canvas id="power-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Voltage Stability Chart -->
+            <div class="card card-colspan-3">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title" style="color: var(--text-primary);">Voltage Stability</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Mains voltage fluctuation (Volts)</p>
+                    </div>
+                    <span class="chart-badge">Line Chart</span>
+                </div>
+                <div style="position: relative; height: 220px; width: 100%; margin-top: 15px;">
+                    <canvas id="voltage-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Energy Consumption History Chart -->
+            <div class="card card-colspan-6">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title" style="color: var(--text-primary);">Energy Consumption History</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Cumulative energy tracking (kWh)</p>
+                    </div>
+                    <span class="chart-badge">Bar Chart</span>
+                </div>
+                <div style="position: relative; height: 260px; width: 100%; margin-top: 15px;">
+                    <canvas id="energy-chart"></canvas>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- ==========================================
+             FOOTER
+             ========================================== -->
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 SmartBill Monitor. All rights reserved.</p>
+                <div class="last-update-wrapper">
+                    <span>Last Update: <span id="last-update" style="color: var(--text-primary); font-weight: 500;">--</span></span>
+                    <span class="status-dot" style="margin: 0 4px;"></span>
+                    <span>Refreshes in:</span>
+                    <div class="refresh-bar-container">
+                        <div class="refresh-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

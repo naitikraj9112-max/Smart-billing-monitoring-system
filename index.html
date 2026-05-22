@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ SmartBill Monitor | Live Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ==========================================
+             NAVIGATION HEADER
+             ========================================== -->
+        <header>
+            <div class="nav-container">
+                <div class="brand-section">
+                    <span class="logo-icon">⚡</span>
+                    <h1>SmartBill Monitor</h1>
+                </div>
+                
+                <nav>
+                    <ul class="nav-links">
+                        <li class="active"><a href="index.html">Live Dashboard</a></li>
+                        <li><a href="dashboard.html">Analytics & Settings</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="status-section">
+                    <div id="connection-status" class="status-badge status-offline">Connecting...</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==========================================
+             MAIN DASHBOARD CONTENT
+             ========================================== -->
+        <main class="dashboard-grid">
+            
+            <div class="section-title">Real-Time Telemetry Feed</div>
+
+            <!-- Voltage Card (Field 1) -->
+            <div class="card card-colspan-2 card-voltage">
+                <div class="card-header">
+                    <span class="card-title">AC Mains Voltage</span>
+                    <div class="card-icon icon-voltage">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 18H19"></path>
+                            <path d="M7 6L12 11L17 6"></path>
+                            <path d="M12 11V18"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="value-container">
+                    <span id="voltage-val" class="value skeleton">--</span>
+                    <span class="unit">V</span>
+                </div>
+                <div class="card-footer">
+                    <div class="status-dot status-dot-active"></div>
+                    <span>Mains Input (RMS)</span>
+                </div>
+            </div>
+
+            <!-- Current Card (Field 2) -->
+            <div class="card card-colspan-2 card-current">
+                <div class="card-header">
+                    <span class="card-title">Load Current</span>
+                    <div class="card-icon icon-current">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="value-container">
+                    <span id="current-val" class="value skeleton">--</span>
+                    <span class="unit">A</span>
+                </div>
+                <div class="card-footer">
+                    <div class="status-dot status-dot-active"></div>
+                    <span>Active Current Draw</span>
+                </div>
+            </div>
+
+            <!-- Power Card (Field 3) -->
+            <div class="card card-colspan-2 card-power">
+                <div class="card-header">
+                    <span class="card-title">Power Draw</span>
+                    <div class="card-icon icon-power">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                </div>
+                <div class="value-container">
+                    <span id="power-val" class="value skeleton">--</span>
+                    <span class="unit">W</span>
+                </div>
+                <div class="card-footer">
+                    <div class="status-dot status-dot-active"></div>
+                    <span>Instantaneous Power</span>
+                </div>
+            </div>
+
+            <!-- Units Consumed Card (Field 4) -->
+            <div class="card card-colspan-3 card-units">
+                <div class="card-header">
+                    <span class="card-title">Energy Consumption</span>
+                    <div class="card-icon icon-units">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="value-container">
+                    <span id="energy-val" class="value skeleton">--</span>
+                    <span class="unit">kWh</span>
+                </div>
+                <div class="card-footer">
+                    <div class="status-dot status-dot-active"></div>
+                    <span>Cumulative units consumed</span>
+                </div>
+            </div>
+
+            <!-- Estimated Bill Card (Field 5) -->
+            <div class="card card-colspan-3 card-bill">
+                <div class="card-header">
+                    <span class="card-title">Estimated Cost</span>
+                    <div class="card-icon icon-bill">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="value-container">
+                    <span class="unit" style="font-size: 1.8rem; font-weight: 700; color: var(--text-primary);">Rs.</span>
+                    <span id="bill-val" class="value skeleton">--</span>
+                </div>
+                <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <div class="status-dot status-dot-active" style="background: var(--clr-bill); box-shadow: 0 0 6px var(--clr-bill);"></div>
+                        <span>Progressive Slab Tariff</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Monthly Est: Rs. <strong id="monthly-bill-val" class="skeleton" style="color: var(--clr-bill);">--</strong></span>
+                </div>
+            </div>
+
+            <!-- Future Charts Area -->
+            <div class="section-title">Telemetry Visualizations</div>
+
+            <div class="card card-colspan-6">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title" style="color: var(--text-primary);">Power Draw Trend</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Real-time power consumption timeline (Field 3)</p>
+                    </div>
+                    <span class="chart-badge">Real-time Line Chart</span>
+                </div>
+                <div style="position: relative; height: 260px; width: 100%; margin-top: 15px;">
+                    <canvas id="power-chart"></canvas>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- ==========================================
+             FOOTER & TELEMETRY CONTROL
+             ========================================== -->
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 SmartBill Monitor. All rights reserved.</p>
+                <div class="last-update-wrapper">
+                    <span>Last Update: <span id="last-update" style="color: var(--text-primary); font-weight: 500;">--</span></span>
+                    <span class="status-dot" style="margin: 0 4px;"></span>
+                    <span>Refreshes in:</span>
+                    <div class="refresh-bar-container">
+                        <div class="refresh-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
